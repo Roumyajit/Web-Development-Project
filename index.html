@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Projects — Roumyajit Sarkar</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f9f9f9; color: #1d1d1d; }
+
+        nav {
+            background: #fff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 20px; font-weight: 800; color: #000; }
+        .logo span { color: #0066cc; }
+        .github-btn {
+            background: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .github-btn:hover { background: #333; transform: scale(1.05); }
+
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        .hero-tag {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+            animation: slideUp 0.8s ease-out both;
+        }
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .projects {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,102,204,0.15);
+            border-color: #0066cc;
+        }
+
+        .project-header {
+            padding: 35px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .project-icon {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            background: #f0f4ff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .project-meta h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .project-type {
+            color: #0066cc;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-body {
+            padding: 0 35px 35px;
+        }
+
+        .project-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #f0f4ff;
+            color: #0066cc;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .view-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #0066cc;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #0052a3;
+            transform: scale(1.02);
+        }
+
+        .footer {
+            background: #000;
+            color: #999;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: #fff; }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            nav { padding: 15px 20px; }
+            .projects { padding: 50px 20px; }
+            .hero { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">Roumyajit<span>.</span></div>
+        <a href="https://github.com/Roumyajit/Web-Development-Project" class="github-btn">🐙 GitHub Repo</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-tag">Full Stack Web Development</div>
+        <h1>10 Web Dev Projects</h1>
+        <p>Professional websites built with HTML, CSS & JavaScript</p>
+        <div class="hero-stats">
+            <div class="hero-stat">📁 10 Projects</div>
+            <div class="hero-stat">💻 HTML • CSS • JS</div>
+            <div class="hero-stat">📱 Fully Responsive</div>
+            <div class="hero-stat">✨ Animated</div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects">
+        <h2 class="section-title">All Projects</h2>
+        <p class="section-subtitle">Click any project to view the live website</p>
+
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🌶️</div>
+                    <div class="project-meta">
+                        <h3>Spice Garden</h3>
+                        <div class="project-type">Restaurant Website</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Premium Indian restaurant website with menu, table reservation, customer reviews, and smooth animations.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Animations</span>
+                    </div>
+                    <a href="web_project_1_restaurant.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">👗</div>
+                    <div class="project-meta">
+                        <h3>StyleHub</h3>
+                        <div class="project-type">E-Commerce Store</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Modern fashion e-commerce platform with product listings, category filters, cart functionality and newsletter.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">E-Commerce</span>
+                    </div>
+                    <a href="web_project_2_ecommerce.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🏡</div>
+                    <div class="project-meta">
+                        <h3>DreamHome Realty</h3>
+                        <div class="project-type">Real Estate Platform</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Professional real estate website with property listings, advanced search, agent profiles and inquiry system.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Real Estate</span>
+                    </div>
+                    <a href="web_project_3_realestate.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🏥</div>
+                    <div class="project-meta">
+                        <h3>MediCare Hospital</h3>
+                        <div class="project-type">Healthcare Website</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Comprehensive hospital website with departments, doctor profiles, appointment booking and emergency contact.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Healthcare</span>
+                    </div>
+                    <a href="web_project_4_hospital.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">⚡</div>
+                    <div class="project-meta">
+                        <h3>IronFit Gym</h3>
+                        <div class="project-type">Fitness Website</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">High-energy gym website with programs, trainer profiles, membership pricing and free trial offer.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Dark Theme</span>
+                    </div>
+                    <a href="web_project_5_gym.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">✈️</div>
+                    <div class="project-meta">
+                        <h3>WanderLust</h3>
+                        <div class="project-type">Travel Agency</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Stunning travel agency website with destinations, tour packages, trip search and booking system.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Travel</span>
+                    </div>
+                    <a href="web_project_6_travel.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📚</div>
+                    <div class="project-meta">
+                        <h3>EduPrime Academy</h3>
+                        <div class="project-type">Education Platform</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Modern online learning platform with course listings, student testimonials, enrollment and placement stats.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">EdTech</span>
+                    </div>
+                    <a href="web_project_7_education.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">⚖️</div>
+                    <div class="project-meta">
+                        <h3>Sharma & Associates</h3>
+                        <div class="project-type">Law Firm Website</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Elegant law firm website with practice areas, attorney profiles, free consultation form and case results.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Professional</span>
+                    </div>
+                    <a href="web_project_8_lawfirm.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📸</div>
+                    <div class="project-meta">
+                        <h3>LensArt Studio</h3>
+                        <div class="project-type">Photography Portfolio</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Dark, artistic photography studio website with gallery, service packages, booking and testimonials.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Dark Theme</span>
+                    </div>
+                    <a href="web_project_9_photography.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">👨‍💻</div>
+                    <div class="project-meta">
+                        <h3>Alex Morgan</h3>
+                        <div class="project-type">Developer Portfolio</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-desc">Clean developer portfolio with skills showcase, featured projects, experience timeline and contact section.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Portfolio</span>
+                    </div>
+                    <a href="web_project_10_portfolio.html" class="view-btn">View Live →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>Roumyajit Sarkar</h3>
+        <p>Full Stack Developer | Data Scientist | IIT Roorkee Certified</p>
+        <div class="footer-links">
+            <a href="https://github.com/Roumyajit">🐙 GitHub</a>
+            <a href="https://linkedin.com/in/roumyajit-sarkar">💼 LinkedIn</a>
+            <a href="mailto:roumyajits@gmail.com">📧 Email</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Roumyajit Sarkar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, i * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
