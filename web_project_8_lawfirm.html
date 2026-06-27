@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma & Associates - Premier Law Firm</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; color: #1d1d1d; }
+        nav { position: fixed; top: 0; width: 100%; background: #1a1a2e; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo { font-size: 20px; font-weight: 700; color: #d4a853; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #ccc; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; font-family: -apple-system, sans-serif; }
+        .nav-links a:hover { color: #d4a853; }
+        .consult-btn { background: #d4a853; color: #000; padding: 10px 25px; border: none; cursor: pointer; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; font-family: -apple-system, sans-serif; }
+        .consult-btn:hover { background: #c49843; transform: scale(1.05); }
+
+        .hero { min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); display: flex; align-items: center; padding: 80px 40px 40px; }
+        .hero-content { max-width: 700px; color: white; }
+        .hero-tag { font-size: 12px; color: #d4a853; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; font-family: -apple-system, sans-serif; }
+        .hero h1 { font-size: 56px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; letter-spacing: -1px; animation: fadeIn 1s ease-out both; }
+        .hero p { font-size: 18px; color: #aaa; margin-bottom: 40px; line-height: 1.8; font-family: -apple-system, sans-serif; font-weight: 300; }
+        .hero-buttons { display: flex; gap: 15px; }
+        .btn-gold { background: #d4a853; color: #000; padding: 14px 35px; border: none; cursor: pointer; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; font-family: -apple-system, sans-serif; }
+        .btn-gold:hover { background: #c49843; transform: translateY(-3px); }
+        .btn-outline-w { background: transparent; color: #fff; border: 1px solid #fff; padding: 14px 35px; cursor: pointer; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; font-family: -apple-system, sans-serif; }
+        .btn-outline-w:hover { background: #fff; color: #000; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .stats { background: #d4a853; display: grid; grid-template-columns: repeat(4, 1fr); }
+        .stat { padding: 40px; text-align: center; border-right: 1px solid rgba(0,0,0,0.1); }
+        .stat h3 { font-size: 36px; font-weight: 700; color: #000; margin-bottom: 5px; }
+        .stat p { font-size: 12px; color: #333; text-transform: uppercase; letter-spacing: 1px; font-family: -apple-system, sans-serif; }
+
+        .practice { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+        .section-tag { font-size: 12px; color: #d4a853; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; font-family: -apple-system, sans-serif; }
+        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 10px; letter-spacing: -1px; }
+        .section-subtitle { color: #666; font-size: 16px; margin-bottom: 60px; font-family: -apple-system, sans-serif; font-weight: 300; }
+        .practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; background: #e0e0e0; }
+        .practice-card { background: #fff; padding: 40px; transition: all 0.3s; cursor: pointer; }
+        .practice-card:hover { background: #1a1a2e; color: #fff; transform: scale(1.02); z-index: 1; }
+        .practice-icon { font-size: 40px; margin-bottom: 20px; }
+        .practice-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .practice-card p { font-size: 14px; color: #666; line-height: 1.8; font-family: -apple-system, sans-serif; font-weight: 300; }
+        .practice-card:hover p { color: #aaa; }
+        .learn-more { display: inline-block; margin-top: 15px; color: #d4a853; font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+        .attorneys { background: #f9f9f9; padding: 100px 40px; }
+        .attorneys-container { max-width: 1200px; margin: 0 auto; }
+        .attorneys-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 60px; }
+        .attorney-card { background: #fff; transition: all 0.4s; border: 1px solid #e0e0e0; }
+        .attorney-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #d4a853; }
+        .attorney-img { height: 250px; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; font-size: 70px; }
+        .attorney-info { padding: 25px; }
+        .attorney-name { font-size: 20px; font-weight: 700; margin-bottom: 5px; }
+        .attorney-title { color: #d4a853; font-size: 13px; font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .attorney-exp { color: #666; font-size: 13px; font-family: -apple-system, sans-serif; }
+        .contact-btn { width: 100%; background: #1a1a2e; color: #fff; border: none; padding: 12px; cursor: pointer; font-family: -apple-system, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px; transition: all 0.3s; }
+        .contact-btn:hover { background: #d4a853; color: #000; }
+
+        .consultation { background: #1a1a2e; color: #fff; padding: 100px 40px; }
+        .consult-content { max-width: 900px; margin: 0 auto; }
+        .consult-content h2 { font-size: 42px; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
+        .consult-content p { color: #aaa; font-size: 16px; margin-bottom: 40px; font-family: -apple-system, sans-serif; font-weight: 300; line-height: 1.8; }
+        .consult-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .consult-input { padding: 14px 18px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 14px; outline: none; font-family: -apple-system, sans-serif; transition: border-color 0.3s; }
+        .consult-input:focus { border-color: #d4a853; }
+        .consult-input::placeholder { color: rgba(255,255,255,0.5); }
+        .consult-textarea { grid-column: 1 / -1; padding: 14px 18px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 14px; outline: none; height: 120px; resize: none; font-family: -apple-system, sans-serif; }
+        .submit-btn { grid-column: 1 / -1; background: #d4a853; color: #000; padding: 16px; border: none; cursor: pointer; font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; font-family: -apple-system, sans-serif; }
+        .submit-btn:hover { background: #c49843; transform: scale(1.02); }
+
+        footer { background: #0d0d1a; color: #666; padding: 60px 40px 30px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-section h4 { color: #d4a853; margin-bottom: 15px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-family: -apple-system, sans-serif; }
+        .footer-section a { color: #666; text-decoration: none; display: block; margin-bottom: 8px; font-size: 13px; transition: color 0.3s; font-family: -apple-system, sans-serif; }
+        .footer-section a:hover { color: #d4a853; }
+        .footer-bottom { text-align: center; border-top: 1px solid #222; padding-top: 25px; font-size: 12px; font-family: -apple-system, sans-serif; }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 36px; } .stats { grid-template-columns: repeat(2, 1fr); } .consult-form { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr 1fr; } nav { padding: 15px 20px; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">⚖️ SHARMA & ASSOCIATES</div>
+        <ul class="nav-links">
+            <li><a href="#">Practice Areas</a></li>
+            <li><a href="#">Attorneys</a></li>
+            <li><a href="#">Cases</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="consult-btn">Free Consultation</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Premier Law Firm — Est. 1998</div>
+            <h1>Justice is Not Just a Word. It's Our Promise.</h1>
+            <p>With 25+ years of legal excellence, we fight for your rights with integrity, expertise, and unwavering commitment.</p>
+            <div class="hero-buttons">
+                <button class="btn-gold">Free Consultation</button>
+                <button class="btn-outline-w">Our Practice Areas</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div class="stat"><h3>2,500+</h3><p>Cases Won</p></div>
+        <div class="stat"><h3>25+</h3><p>Years Experience</p></div>
+        <div class="stat"><h3>50+</h3><p>Expert Attorneys</p></div>
+        <div class="stat"><h3>98%</h3><p>Success Rate</p></div>
+    </div>
+
+    <section class="practice">
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-title">Practice Areas</h2>
+        <p class="section-subtitle">Comprehensive legal services across all domains</p>
+        <div class="practice-grid">
+            <div class="practice-card"><div class="practice-icon">🏢</div><h3>Corporate Law</h3><p>Mergers, acquisitions, contracts, and business formation for corporations of all sizes.</p><span class="learn-more">Learn More →</span></div>
+            <div class="practice-card"><div class="practice-icon">👨‍👩‍👧</div><h3>Family Law</h3><p>Divorce, child custody, adoption, and all matters related to family legal issues.</p><span class="learn-more">Learn More →</span></div>
+            <div class="practice-card"><div class="practice-icon">🏠</div><h3>Property Law</h3><p>Real estate transactions, property disputes, tenant rights, and land acquisition.</p><span class="learn-more">Learn More →</span></div>
+            <div class="practice-card"><div class="practice-icon">⚖️</div><h3>Criminal Defense</h3><p>Aggressive defense strategies for all criminal charges with proven track record.</p><span class="learn-more">Learn More →</span></div>
+            <div class="practice-card"><div class="practice-icon">💼</div><h3>Employment Law</h3><p>Workplace disputes, wrongful termination, discrimination, and labor rights.</p><span class="learn-more">Learn More →</span></div>
+            <div class="practice-card"><div class="practice-icon">💡</div><h3>Intellectual Property</h3><p>Patents, trademarks, copyrights, and protecting your creative and business assets.</p><span class="learn-more">Learn More →</span></div>
+        </div>
+    </section>
+
+    <section class="attorneys">
+        <div class="attorneys-container">
+            <div class="section-tag">Our Team</div>
+            <h2 class="section-title">Expert Attorneys</h2>
+            <p class="section-subtitle">Seasoned legal professionals with decades of combined experience</p>
+            <div class="attorneys-grid">
+                <div class="attorney-card"><div class="attorney-img">👨‍⚖️</div><div class="attorney-info"><div class="attorney-name">Adv. Rajesh Sharma</div><div class="attorney-title">Senior Partner</div><div class="attorney-exp">30+ years | Corporate & Business Law</div><button class="contact-btn">Schedule Consultation</button></div></div>
+                <div class="attorney-card"><div class="attorney-img">👩‍⚖️</div><div class="attorney-info"><div class="attorney-name">Adv. Priya Verma</div><div class="attorney-title">Partner</div><div class="attorney-exp">18+ years | Family & Criminal Law</div><button class="contact-btn">Schedule Consultation</button></div></div>
+                <div class="attorney-card"><div class="attorney-img">👨‍⚖️</div><div class="attorney-info"><div class="attorney-name">Adv. Arun Mehta</div><div class="attorney-title">Associate Partner</div><div class="attorney-exp">12+ years | Property & IP Law</div><button class="contact-btn">Schedule Consultation</button></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="consultation">
+        <div class="consult-content">
+            <div class="section-tag" style="color: #d4a853;">Get Legal Help</div>
+            <h2>Free Initial Consultation</h2>
+            <p>Tell us about your legal matter and we'll connect you with the right attorney. Completely confidential and free.</p>
+            <div class="consult-form">
+                <input type="text" class="consult-input" placeholder="Your Full Name">
+                <input type="tel" class="consult-input" placeholder="Phone Number">
+                <input type="email" class="consult-input" placeholder="Email Address">
+                <select class="consult-input"><option>Select Practice Area</option><option>Corporate Law</option><option>Family Law</option><option>Criminal Defense</option><option>Property Law</option></select>
+                <textarea class="consult-textarea" placeholder="Briefly describe your legal matter..."></textarea>
+                <button class="submit-btn">Request Free Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>Sharma & Associates</h4><p style="font-size: 13px; line-height: 1.8;">Premier law firm with 25+ years of legal excellence across India.</p></div>
+            <div class="footer-section"><h4>Practice Areas</h4><a href="#">Corporate Law</a><a href="#">Family Law</a><a href="#">Criminal Defense</a><a href="#">Property Law</a></div>
+            <div class="footer-section"><h4>Firm</h4><a href="#">About Us</a><a href="#">Our Attorneys</a><a href="#">Case Results</a><a href="#">News & Blog</a></div>
+            <div class="footer-section"><h4>Contact</h4><a href="#">📞 +91 98765 43210</a><a href="#">📧 info@sharmalaw.com</a><a href="#">📍 Connaught Place, Delhi</a></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Sharma & Associates. Built by R.Tech | All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.practice-card, .attorney-card').forEach(el => {
+            el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
