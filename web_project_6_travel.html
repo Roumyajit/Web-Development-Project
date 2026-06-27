@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WanderLust - Premium Travel Agency</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1d1d1d; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+        .logo { font-size: 22px; font-weight: 800; color: #0099cc; }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #0099cc; }
+        .book-btn { background: #0099cc; color: #fff; padding: 10px 25px; border: none; border-radius: 50px; cursor: pointer; font-weight: 700; transition: all 0.3s; }
+        .book-btn:hover { background: #007aa3; transform: scale(1.05); }
+
+        .hero { min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), linear-gradient(135deg, #006994 0%, #00bcd4 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 40px 40px; text-align: center; }
+        .hero-content { color: white; max-width: 800px; }
+        .hero-tag { font-size: 13px; color: #00e5ff; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .hero h1 { font-size: 72px; font-weight: 800; letter-spacing: -2px; margin-bottom: 20px; animation: slideUp 1s ease-out both; }
+        .hero p { font-size: 20px; opacity: 0.9; margin-bottom: 40px; font-weight: 300; }
+        .search-bar { background: #fff; border-radius: 15px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 15px; width: 100%; max-width: 900px; }
+        .search-input { padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 10px; font-size: 14px; outline: none; color: #333; }
+        .search-btn { background: #0099cc; color: #fff; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: 700; transition: all 0.3s; }
+        .search-btn:hover { background: #007aa3; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .destinations { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 42px; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
+        .section-subtitle { color: #666; font-size: 16px; margin-bottom: 60px; }
+        .dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .dest-card { border-radius: 20px; overflow: hidden; position: relative; height: 350px; cursor: pointer; transition: all 0.4s; }
+        .dest-card:hover { transform: scale(1.03); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .dest-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 80px; transition: transform 0.4s; }
+        .dest-card:hover .dest-bg { transform: scale(1.1); }
+        .dest-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 30px 20px 20px; color: white; }
+        .dest-name { font-size: 22px; font-weight: 800; margin-bottom: 5px; }
+        .dest-country { font-size: 13px; opacity: 0.8; margin-bottom: 10px; }
+        .dest-price { font-size: 16px; font-weight: 700; color: #00e5ff; }
+
+        .packages { background: #f5f5f5; padding: 100px 40px; }
+        .packages-container { max-width: 1200px; margin: 0 auto; }
+        .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 60px; }
+        .package-card { background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid #e0e0e0; transition: all 0.4s; }
+        .package-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .package-img { height: 200px; background: linear-gradient(135deg, #0099cc, #006994); display: flex; align-items: center; justify-content: center; font-size: 60px; position: relative; }
+        .pkg-badge { position: absolute; top: 15px; right: 15px; background: #ff6b35; color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+        .package-info { padding: 25px; }
+        .package-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .package-desc { color: #666; font-size: 14px; margin-bottom: 15px; line-height: 1.6; }
+        .package-details { display: flex; gap: 15px; font-size: 13px; color: #888; margin-bottom: 20px; }
+        .package-footer { display: flex; justify-content: space-between; align-items: center; }
+        .package-price { font-size: 22px; font-weight: 800; color: #0099cc; }
+        .book-now { background: #0099cc; color: #fff; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: 700; font-size: 13px; transition: all 0.3s; }
+        .book-now:hover { background: #007aa3; transform: scale(1.05); }
+
+        .why { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .why-left h2 { font-size: 42px; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
+        .why-left p { color: #666; font-size: 16px; line-height: 1.8; margin-bottom: 30px; }
+        .why-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .why-card { padding: 20px; border-radius: 10px; background: #f5f5f5; transition: all 0.3s; }
+        .why-card:hover { background: #0099cc; color: #fff; transform: translateY(-5px); }
+        .why-icon { font-size: 28px; margin-bottom: 10px; }
+        .why-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+        .why-card p { font-size: 13px; opacity: 0.7; }
+
+        .cta { background: linear-gradient(135deg, #0099cc, #006994); color: #fff; padding: 100px 40px; text-align: center; }
+        .cta h2 { font-size: 48px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .cta p { font-size: 18px; opacity: 0.9; margin-bottom: 40px; }
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; }
+        .btn { padding: 14px 35px; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s; }
+        .btn-white { background: #fff; color: #0099cc; }
+        .btn-white:hover { background: #f0f0f0; transform: translateY(-3px); }
+        .btn-outline-w { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-outline-w:hover { background: #fff; color: #0099cc; }
+
+        footer { background: #001a2e; color: #999; padding: 60px 40px 30px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-section h4 { color: #fff; margin-bottom: 15px; font-size: 14px; }
+        .footer-section a { color: #999; text-decoration: none; display: block; margin-bottom: 8px; font-size: 13px; transition: color 0.3s; }
+        .footer-section a:hover { color: #0099cc; }
+        .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 25px; font-size: 12px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 42px; }
+            .search-bar { grid-template-columns: 1fr; }
+            .why { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">✈️ WanderLust</div>
+        <ul class="nav-links">
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Packages</a></li>
+            <li><a href="#">Flights</a></li>
+            <li><a href="#">Hotels</a></li>
+        </ul>
+        <button class="book-btn">Plan Trip</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Explore the World</div>
+            <h1>Your Next Adventure Awaits</h1>
+            <p>Discover breathtaking destinations with our curated travel packages</p>
+        </div>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Where do you want to go?">
+            <input type="date" class="search-input">
+            <select class="search-input"><option>Travelers</option><option>1 Person</option><option>2 People</option><option>Family</option></select>
+            <button class="search-btn">Search</button>
+        </div>
+    </section>
+
+    <section class="destinations">
+        <h2 class="section-title">Popular Destinations</h2>
+        <p class="section-subtitle">Handpicked destinations loved by thousands of travelers</p>
+        <div class="dest-grid">
+            <div class="dest-card"><div class="dest-bg" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">🗼</div><div class="dest-overlay"><div class="dest-name">Paris, France</div><div class="dest-country">🇫🇷 Europe</div><div class="dest-price">From ₹85,000</div></div></div>
+            <div class="dest-card"><div class="dest-bg" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">🏯</div><div class="dest-overlay"><div class="dest-name">Tokyo, Japan</div><div class="dest-country">🇯🇵 Asia</div><div class="dest-price">From ₹95,000</div></div></div>
+            <div class="dest-card"><div class="dest-bg" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">🗽</div><div class="dest-overlay"><div class="dest-name">New York, USA</div><div class="dest-country">🇺🇸 Americas</div><div class="dest-price">From ₹1,20,000</div></div></div>
+            <div class="dest-card"><div class="dest-bg" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);">🕌</div><div class="dest-overlay"><div class="dest-name">Dubai, UAE</div><div class="dest-country">🇦🇪 Middle East</div><div class="dest-price">From ₹55,000</div></div></div>
+        </div>
+    </section>
+
+    <section class="packages">
+        <div class="packages-container">
+            <h2 class="section-title">Featured Packages</h2>
+            <p class="section-subtitle">Curated travel experiences for every budget and interest</p>
+            <div class="packages-grid">
+                <div class="package-card"><div class="package-img">🏖️<span class="pkg-badge">HOT</span></div><div class="package-info"><div class="package-name">Goa Beach Paradise</div><div class="package-desc">5 days of sun, sand, and sea with luxury resort stay and guided tours.</div><div class="package-details"><span>📅 5 Days</span><span>🏨 4★ Hotel</span><span>✈️ Flight Inc.</span></div><div class="package-footer"><div class="package-price">₹25,999</div><button class="book-now">Book Now</button></div></div></div>
+                <div class="package-card"><div class="package-img">🏔️<span class="pkg-badge">NEW</span></div><div class="package-info"><div class="package-name">Kashmir Adventure</div><div class="package-desc">7 days exploring the paradise on earth with houseboat stay and trekking.</div><div class="package-details"><span>📅 7 Days</span><span>🏨 Houseboat</span><span>✈️ Flight Inc.</span></div><div class="package-footer"><div class="package-price">₹35,999</div><button class="book-now">Book Now</button></div></div></div>
+                <div class="package-card"><div class="package-img">🕌</div><div class="package-info"><div class="package-name">Dubai Luxury Tour</div><div class="package-desc">4 days in the city of gold with desert safari and Burj Khalifa visit.</div><div class="package-details"><span>📅 4 Days</span><span>🏨 5★ Hotel</span><span>✈️ Flight Inc.</span></div><div class="package-footer"><div class="package-price">₹55,999</div><button class="book-now">Book Now</button></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why">
+        <div class="why-left">
+            <h2>Why Travel With WanderLust?</h2>
+            <p>We create unforgettable travel experiences with personalized service and unbeatable prices. Your dream vacation is our mission.</p>
+            <button style="background: #0099cc; color: #fff; padding: 14px 35px; border: none; border-radius: 50px; cursor: pointer; font-weight: 700; font-size: 15px;">Start Planning</button>
+        </div>
+        <div class="why-features">
+            <div class="why-card"><div class="why-icon">💎</div><h4>Premium Service</h4><p>Hand-picked experiences</p></div>
+            <div class="why-card"><div class="why-icon">💰</div><h4>Best Prices</h4><p>Price match guarantee</p></div>
+            <div class="why-card"><div class="why-icon">🛡️</div><h4>Travel Insurance</h4><p>Fully covered trips</p></div>
+            <div class="why-card"><div class="why-icon">📞</div><h4>24/7 Support</h4><p>Always here for you</p></div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Explore the World?</h2>
+        <p>Get personalized travel recommendations from our experts</p>
+        <div class="cta-buttons">
+            <button class="btn btn-white">Browse Packages</button>
+            <button class="btn btn-outline-w">Talk to Expert</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>✈️ WanderLust</h4><p style="font-size: 13px; line-height: 1.8; color: #555;">Your trusted travel partner for unforgettable journeys.</p></div>
+            <div class="footer-section"><h4>Destinations</h4><a href="#">Europe</a><a href="#">Asia</a><a href="#">Americas</a><a href="#">Middle East</a></div>
+            <div class="footer-section"><h4>Services</h4><a href="#">Flight Booking</a><a href="#">Hotel Booking</a><a href="#">Tour Packages</a><a href="#">Visa Assistance</a></div>
+            <div class="footer-section"><h4>Contact</h4><a href="#">📞 +91 98765 43210</a><a href="#">📧 info@wanderlust.com</a><a href="#">📍 Mumbai, India</a></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 WanderLust Travel. Built by R.Tech</p></div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.dest-card, .package-card, .why-card').forEach(el => {
+            el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
