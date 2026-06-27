@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPrime Academy - Excellence in Education</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1d1d1d; }
+        nav { position: fixed; top: 0; width: 100%; background: #fff; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .logo { font-size: 22px; font-weight: 800; color: #6c3bd5; }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #6c3bd5; }
+        .enroll-btn { background: #6c3bd5; color: #fff; padding: 10px 25px; border: none; border-radius: 50px; cursor: pointer; font-weight: 700; transition: all 0.3s; }
+        .enroll-btn:hover { background: #5930b5; transform: scale(1.05); }
+
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #f3eeff 0%, #e8d5ff 100%); display: flex; align-items: center; padding: 80px 40px 40px; }
+        .hero-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-tag { font-size: 13px; color: #6c3bd5; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -2px; margin-bottom: 20px; line-height: 1.1; animation: slideUp 1s ease-out both; }
+        .hero h1 span { color: #6c3bd5; }
+        .hero p { font-size: 18px; color: #555; margin-bottom: 35px; font-weight: 300; line-height: 1.8; }
+        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 14px 30px; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s; }
+        .btn-purple { background: #6c3bd5; color: #fff; }
+        .btn-purple:hover { background: #5930b5; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(108,59,213,0.3); }
+        .btn-outline { background: transparent; color: #6c3bd5; border: 2px solid #6c3bd5; }
+        .btn-outline:hover { background: #6c3bd5; color: #fff; }
+        .hero-image { background: linear-gradient(135deg, #6c3bd5, #9b6dff); border-radius: 30px; height: 400px; display: flex; align-items: center; justify-content: center; font-size: 120px; }
+        .hero-stats { display: flex; gap: 30px; margin-top: 30px; }
+        .hero-stat h4 { font-size: 28px; font-weight: 800; color: #6c3bd5; }
+        .hero-stat p { font-size: 13px; color: #666; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .courses { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 42px; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
+        .section-subtitle { color: #666; font-size: 16px; }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .course-card { background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid #e0e0e0; transition: all 0.4s; cursor: pointer; }
+        .course-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(108,59,213,0.15); border-color: #6c3bd5; }
+        .course-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 60px; }
+        .course-info { padding: 20px; }
+        .course-tag { background: #f3eeff; color: #6c3bd5; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 10px; }
+        .course-name { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .course-desc { color: #666; font-size: 13px; margin-bottom: 15px; line-height: 1.6; }
+        .course-meta { display: flex; justify-content: space-between; align-items: center; }
+        .course-price { font-size: 20px; font-weight: 800; color: #6c3bd5; }
+        .enroll-now { background: #6c3bd5; color: #fff; border: none; padding: 8px 18px; border-radius: 50px; cursor: pointer; font-weight: 700; font-size: 13px; transition: all 0.3s; }
+        .enroll-now:hover { background: #5930b5; transform: scale(1.05); }
+
+        .features { background: #6c3bd5; color: #fff; padding: 100px 40px; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .feature h3 { font-size: 42px; font-weight: 800; margin-bottom: 8px; }
+        .feature p { font-size: 14px; opacity: 0.8; }
+
+        .testimonials { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .testimonial { background: #f9f9f9; padding: 30px; border-radius: 15px; border: 1px solid #e0e0e0; transition: all 0.3s; }
+        .testimonial:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); background: #fff; }
+        .stars { color: #ffc107; margin-bottom: 15px; }
+        .testimonial-text { color: #555; font-style: italic; margin-bottom: 20px; font-size: 14px; line-height: 1.8; }
+        .reviewer { font-weight: 700; font-size: 15px; }
+        .reviewer-role { color: #6c3bd5; font-size: 12px; }
+
+        .cta { background: linear-gradient(135deg, #6c3bd5 0%, #9b6dff 100%); color: #fff; padding: 100px 40px; text-align: center; }
+        .cta h2 { font-size: 48px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .cta p { font-size: 18px; opacity: 0.9; margin-bottom: 40px; }
+        .cta-btn { background: #fff; color: #6c3bd5; padding: 14px 40px; border: none; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .cta-btn:hover { background: #f0f0f0; transform: scale(1.05); }
+
+        footer { background: #1a0a3d; color: #999; padding: 60px 40px 30px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-section h4 { color: #fff; margin-bottom: 15px; font-size: 14px; }
+        .footer-section a { color: #999; text-decoration: none; display: block; margin-bottom: 8px; font-size: 13px; transition: color 0.3s; }
+        .footer-section a:hover { color: #6c3bd5; }
+        .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 25px; font-size: 12px; }
+
+        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; } .hero-image { height: 250px; font-size: 80px; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 36px; } .features-grid { grid-template-columns: repeat(2, 1fr); } .footer-content { grid-template-columns: 1fr 1fr; } nav { padding: 15px 20px; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">📚 EduPrime</div>
+        <ul class="nav-links">
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Faculty</a></li>
+            <li><a href="#">Results</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="enroll-btn">Enroll Now</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-tag">India's #1 Academy</div>
+                <h1>Learn Today, <span>Lead</span> Tomorrow</h1>
+                <p>World-class education with expert faculty, proven results, and comprehensive courses for every student.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-purple">Explore Courses</button>
+                    <button class="btn btn-outline">Free Demo Class</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><h4>50K+</h4><p>Students</p></div>
+                    <div class="hero-stat"><h4>95%</h4><p>Success Rate</p></div>
+                    <div class="hero-stat"><h4>200+</h4><p>Courses</p></div>
+                </div>
+            </div>
+            <div class="hero-image">🎓</div>
+        </div>
+    </section>
+
+    <section class="courses">
+        <div class="section-header">
+            <h2 class="section-title">Popular Courses</h2>
+            <p class="section-subtitle">Choose from 200+ courses taught by expert faculty</p>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card"><div class="course-img" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">💻</div><div class="course-info"><span class="course-tag">Technology</span><div class="course-name">Full Stack Development</div><div class="course-desc">Learn HTML, CSS, JavaScript, React, Node.js and build real-world projects.</div><div class="course-meta"><div class="course-price">₹15,999</div><button class="enroll-now">Enroll</button></div></div></div>
+            <div class="course-card"><div class="course-img" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">🤖</div><div class="course-info"><span class="course-tag">AI & ML</span><div class="course-name">Data Science & ML</div><div class="course-desc">Python, Machine Learning, Deep Learning, and Data Visualization mastery.</div><div class="course-meta"><div class="course-price">₹18,999</div><button class="enroll-now">Enroll</button></div></div></div>
+            <div class="course-card"><div class="course-img" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);">📊</div><div class="course-info"><span class="course-tag">Business</span><div class="course-name">Digital Marketing</div><div class="course-desc">SEO, Social Media, Google Ads, Content Marketing and Analytics.</div><div class="course-meta"><div class="course-price">₹12,999</div><button class="enroll-now">Enroll</button></div></div></div>
+            <div class="course-card"><div class="course-img" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2);">🎨</div><div class="course-info"><span class="course-tag">Design</span><div class="course-name">UI/UX Design</div><div class="course-desc">Figma, Adobe XD, User Research, Prototyping and Design Systems.</div><div class="course-meta"><div class="course-price">₹14,999</div><button class="enroll-now">Enroll</button></div></div></div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature"><h3>50K+</h3><p>Students Enrolled</p></div>
+            <div class="feature"><h3>200+</h3><p>Expert Courses</p></div>
+            <div class="feature"><h3>95%</h3><p>Placement Rate</p></div>
+            <div class="feature"><h3>500+</h3><p>Hiring Partners</p></div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Student Success Stories</h2>
+            <p class="section-subtitle">Hear from our successful alumni</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">"EduPrime completely transformed my career. Got placed at Google with ₹45 LPA package after completing the Data Science course!"</p><div class="reviewer">Arjun Mehta</div><div class="reviewer-role">Data Scientist at Google</div></div>
+            <div class="testimonial"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">"The faculty is world-class and the curriculum is industry-relevant. Best investment I've made in my career!"</p><div class="reviewer">Priya Sharma</div><div class="reviewer-role">UI/UX Designer at Flipkart</div></div>
+            <div class="testimonial"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">"From zero coding knowledge to Full Stack Developer in 6 months. EduPrime made the impossible possible!"</p><div class="reviewer">Rahul Singh</div><div class="reviewer-role">Full Stack Dev at Swiggy</div></div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Start Your Learning Journey</h2>
+        <p>Join 50,000+ students who transformed their careers with EduPrime</p>
+        <button class="cta-btn">Enroll Today — Free Demo Available</button>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>📚 EduPrime</h4><p style="font-size: 13px; line-height: 1.8; color: #555;">India's most trusted online learning platform.</p></div>
+            <div class="footer-section"><h4>Courses</h4><a href="#">Data Science</a><a href="#">Web Development</a><a href="#">UI/UX Design</a><a href="#">Digital Marketing</a></div>
+            <div class="footer-section"><h4>Company</h4><a href="#">About Us</a><a href="#">Our Faculty</a><a href="#">Placements</a><a href="#">Blog</a></div>
+            <div class="footer-section"><h4>Contact</h4><a href="#">📞 1800-123-4567</a><a href="#">📧 info@eduprime.com</a><a href="#">📍 Bangalore, India</a></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 EduPrime Academy. Built by R.Tech</p></div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.course-card, .testimonial').forEach(el => {
+            el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
